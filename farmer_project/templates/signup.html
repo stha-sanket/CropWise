@@ -23,7 +23,7 @@
                             <div class="bg-white bg-opacity-20 p-4 rounded-lg">
                                 <i data-feather="droplet" class="w-8 h-8 text-white mb-2"></i>
                                 <p class="text-white">Soil Analysis</p>
-                            </div>
+                            }
                             <div class="bg-white bg-opacity-20 p-4 rounded-lg">
                                 <i data-feather="cloud" class="w-8 h-8 text-white mb-2"></i>
                                 <p class="text-white">Weather Insights</p>
@@ -45,18 +45,13 @@
                         {% csrf_token %}
                         {% for field in form %}
                             <div>
-                                <label for="{{ field.id_for_label }}" class="text-sm text-gray-600">{{ field.label }}</label>
+                                <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{{ field.label }}</label>
+                                
                                 <div class="relative">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        {% if field.name == 'username' %}
-                                            <i data-feather="user" class="h-5 w-5 text-gray-400"></i>
-                                        {% elif field.name == 'email' %}
-                                            <i data-feather="mail" class="h-5 w-5 text-gray-400"></i>
-                                        {% elif field.name == 'password1' or field.name == 'password2' %}
-                                            <i data-feather="lock" class="h-5 w-5 text-gray-400"></i>
-                                        {% endif %}
+                                        {# No icons for username/email/password #}
                                     </div>
-                                    {{ field }}
+                                    <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" id="{{ field.id_for_label }}" class="input-focus pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-green-500 transition">
                                 </div>
                                 {% if field.errors %}
                                     <p class="text-red-500 text-xs italic">{{ field.errors }}</p>
