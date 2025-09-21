@@ -51,13 +51,17 @@
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         {% if field.name == 'username' %}
                                             <i data-feather="user" class="h-5 w-5 text-gray-400"></i>
-                                        {% elif field.name == 'password' or field.name == 'password2' %}
-                                            <i data-feather="lock" class="h-5 w-5 text-gray-400"></i>
                                         {% elif field.name == 'email' %}
                                             <i data-feather="mail" class="h-5 w-5 text-gray-400"></i>
                                         {% endif %}
                                     </div>
-                                    {{ field }}
+                                    {% if field.name == 'password' %}
+                                        <input type="password" name="{{ field.name }}" id="{{ field.id_for_label }}" class="input-focus pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-green-500 transition" placeholder="Enter your password">
+                                    {% elif field.name == 'password2' %}
+                                        <input type="password" name="{{ field.name }}" id="{{ field.id_for_label }}" class="input-focus pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-green-500 transition" placeholder="Confirm your password">
+                                    {% else %}
+                                        {{ field }}
+                                    {% endif %}
                                 </div>
                                 {% if field.errors %}
                                     <p class="text-red-500 text-xs italic">{{ field.errors }}</p>
