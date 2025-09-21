@@ -1,0 +1,33 @@
+{% load static %}
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <i data-feather="sun" class="h-8 w-8 text-green-600"></i>
+                    <span class="ml-2 text-xl font-bold text-green-600">CropWise</span>
+                </div>
+            </div>
+            <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                <a href="{% url 'home' %}" class="text-gray-500 hover:text-green-600 px-3 py-2 text-sm font-medium {% if request.resolver_match.url_name == 'home' %}text-green-600 border-b-2 border-green-500{% endif %}">Home</a>
+                <a href="{% url 'recommendation' %}" class="text-gray-500 hover:text-green-600 px-3 py-2 text-sm font-medium {% if request.resolver_match.url_name == 'recommendation' %}text-green-600 border-b-2 border-green-500{% endif %}">Crop Selector</a>
+                <a href="{% url 'crop_information' %}" class="text-gray-500 hover:text-green-600 px-3 py-2 text-sm font-medium {% if request.resolver_match.url_name == 'crop_information' %}text-green-600 border-b-2 border-green-500{% endif %}">Learn</a>
+                <a href="{% url 'chatbot' %}" class="text-gray-500 hover:text-green-600 px-3 py-2 text-sm font-medium {% if request.resolver_match.url_name == 'chatbot' %}text-green-600 border-b-2 border-green-500{% endif %}">Chatbot</a>
+                <a href="{% url 'contact' %}" class="text-gray-500 hover:text-green-600 px-3 py-2 text-sm font-medium {% if request.resolver_match.url_name == 'contact' %}text-green-600 border-b-2 border-green-500{% endif %}">Contact</a>
+                {% if user.is_authenticated %}
+                    <form action="{% url 'logout' %}" method="post" class="inline">
+                        {% csrf_token %}
+                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">Login</a>
+                {% endif %}
+            </div>
+            <div class="-mr-2 flex items-center md:hidden">
+                <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500">
+                    <i data-feather="menu" class="h-6 w-6"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>

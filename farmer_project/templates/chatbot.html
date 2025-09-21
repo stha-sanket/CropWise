@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropWise - Chatbot</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="/home/ashura/Desktop/django/farmer_project/static/css/style.css">
+    <style>
+        .chat-container {
+            height: calc(100vh - 150px); /* Adjust based on navbar/footer height */
+            display: flex;
+            flex-direction: column;
+            background-color: #f9fafb;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+        .message-bubble {
+            max-width: 70%;
+            padding: 0.75rem 1rem;
+            border-radius: 1.25rem;
+            margin-bottom: 0.75rem;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background-color: #34d399; /* green-400 */
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 0.25rem; /* square corner */
+        }
+        .bot-message {
+            background-color: #e5e7eb; /* gray-200 */
+            color: #374151; /* gray-800 */
+            align-self: flex-start;
+            border-bottom-left-radius: 0.25rem; /* square corner */
+        }
+        .chat-input-area {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+        }
+        .input-focus:focus {
+            border-color: #4ade80;
+            box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    {% include 'navbar.html' %}
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto chat-container">
+            <div class="chat-messages" id="chat-messages">
+                <!-- Initial bot message -->
+                <div class="flex justify-start">
+                    <div class="message-bubble bot-message">
+                        Hello! I'm your CropWise AI Assistant. How can I help you with your farming today?
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="user-input" class="flex-grow px-4 py-2 rounded-full border border-gray-300 input-focus focus:outline-none" placeholder="Ask me anything about crops or farming...">
+                <button id="send-button" class="ml-4 p-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition duration-200">
+                    <i data-feather="send" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        feather.replace();
+
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+
+        sendButton.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const messageText = userInput.value.trim();
+            if (messageText === '') return;
+
+            // Add user message
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.className = 'flex justify-end';
+            userMessageDiv.innerHTML = `<div class="message-bubble user-message">${messageText}</div>`;
+            chatMessages.appendChild(userMessageDiv);
+
+            userInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Simulate bot response (replace with actual API call later)
+            setTimeout(() => {
+                const botMessageDiv = document.createElement('div');
+                botMessageDiv.className = 'flex justify-start';
+                botMessageDiv.innerHTML = `<div class="message-bubble bot-message">I am an AI assistant and can provide general information. For specific advice, please consult an expert.</div>`;
+                chatMessages.appendChild(botMessageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

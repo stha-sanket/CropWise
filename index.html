@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropWise - Smart Farming Solutions</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .chatbot-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i data-feather="sun" class="h-8 w-8 text-green-600"></i>
+                        <span class="ml-2 text-xl font-bold text-green-600">CropWise</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#" class="text-green-600 border-b-2 border-green-500 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="#" class="text-gray-500 hover:text-green-600 px-3 py-2 text-sm font-medium">Crop Selector</a>
+                    <a href="#" class="text-gray-500 hover:text-green-600 px-3 py-2 text-sm font-medium">Learn</a>
+                    <a href="#" class="text-gray-500 hover:text-green-600 px-3 py-2 text-sm font-medium">About</a>
+                    <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">Sign In</button>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500">
+                        <i data-feather="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-gradient">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl" data-aos="fade-down">
+                    <span class="block">Smarter Farming with</span>
+                    <span class="block text-green-600">AI-Powered Insights</span>
+                </h1>
+                <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl" data-aos="fade-up">
+                    CropWise helps farmers make informed decisions about crop selection, pest control, and yield optimization using advanced AI technology.
+                </p>
+                <div class="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="rounded-md shadow">
+                        <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 md:py-4 md:text-lg md:px-10">
+                            Get Started
+                        </a>
+                    </div>
+                    <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
+                        <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-green-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-green-600 font-semibold tracking-wide uppercase" data-aos="fade-down">Features</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl" data-aos="fade-down">
+                    Everything you need for smart farming
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
+                    <!-- Feature 1 -->
+                    <div class="feature-card relative bg-gray-50 p-6 rounded-lg transition duration-300" data-aos="fade-up">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                            <i data-feather="search"></i>
+                        </div>
+                        <div class="mt-5">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">Crop Selector</h3>
+                            <p class="mt-2 text-base text-gray-500">
+                                Our AI analyzes your soil, climate, and market data to recommend the most profitable crops for your farm.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="feature-card relative bg-gray-50 p-6 rounded-lg transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                            <i data-feather="message-square"></i>
+                        </div>
+                        <div class="mt-5">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">AI Chat Assistant</h3>
+                            <p class="mt-2 text-base text-gray-500">
+                                Get instant answers to your farming questions with our 24/7 AI chatbot trained on agricultural expertise.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="feature-card relative bg-gray-50 p-6 rounded-lg transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                            <i data-feather="book-open"></i>
+                        </div>
+                        <div class="mt-5">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">Learning Resources</h3>
+                            <p class="mt-2 text-base text-gray-500">
+                                Access our comprehensive library of farming guides, tutorials, and best practices for all crops.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="bg-gray-50 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-12">
+                <h2 class="text-base text-green-600 font-semibold tracking-wide uppercase" data-aos="fade-down">Process</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl" data-aos="fade-down">
+                    How CropWise Works
+                </p>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="w-full md:w-1/2 mb-8 md:mb-0" data-aos="fade-right">
+                    <img src="http://static.photos/agriculture/1024x576/1" alt="Farmer using tablet" class="rounded-lg shadow-lg">
+                </div>
+                <div class="w-full md:w-1/2 md:pl-12" data-aos="fade-left">
+                    <div class="mb-8">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-green-100 rounded-md p-2">
+                                <i data-feather="upload" class="h-6 w-6 text-green-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">1. Input Your Farm Data</h3>
+                                <p class="mt-2 text-base text-gray-500">
+                                    Enter details about your location, soil type, water availability, and previous crops.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-green-100 rounded-md p-2">
+                                <i data-feather="cpu" class="h-6 w-6 text-green-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">2. AI Analysis</h3>
+                                <p class="mt-2 text-base text-gray-500">
+                                    Our algorithms process your data against thousands of agricultural datasets.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-green-100 rounded-md p-2">
+                                <i data-feather="bar-chart-2" class="h-6 w-6 text-green-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">3. Get Recommendations</h3>
+                                <p class="mt-2 text-base text-gray-500">
+                                    Receive personalized crop suggestions with expected yields and market prices.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-12">
+                <h2 class="text-base text-green-600 font-semibold tracking-wide uppercase" data-aos="fade-down">Testimonials</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl" data-aos="fade-down">
+                    What Farmers Are Saying
+                </p>
+            </div>
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+                <div class="bg-gray-50 p-6 rounded-lg" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <img class="w-12 h-12 rounded-full" src="http://static.photos/people/200x200/1" alt="Farmer">
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Rajesh Kumar</h4>
+                            <p class="text-green-600">Wheat Farmer, Punjab</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">
+                        "CropWise helped me switch to more profitable crops. My income increased by 30% in the first season!"
+                    </p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <img class="w-12 h-12 rounded-full" src="http://static.photos/people/200x200/2" alt="Farmer">
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Priya Patel</h4>
+                            <p class="text-green-600">Organic Farmer, Maharashtra</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">
+                        "The AI chatbot answered all my pest control questions instantly. It's like having an agronomist in my pocket."
+                    </p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <img class="w-12 h-12 rounded-full" src="http://static.photos/people/200x200/3" alt="Farmer">
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Amir Khan</h4>
+                            <p class="text-green-600">Rice Farmer, West Bengal</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">
+                        "The learning resources taught me modern techniques that doubled my rice yield. Amazing platform!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-green-600">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+            <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl" data-aos="fade-right">
+                <span class="block">Ready to transform your farming?</span>
+                <span class="block text-green-100">Start using CropWise today.</span>
+            </h2>
+            <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0" data-aos="fade-left">
+                <div class="inline-flex rounded-md shadow">
+                    <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-green-600 bg-white hover:bg-green-50">
+                        Get Started
+                    </a>
+                </div>
+                <div class="ml-3 inline-flex rounded-md shadow">
+                    <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-500 hover:bg-green-700">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase">Solutions</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Crop Selection</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Pest Control</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Yield Optimization</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase">Resources</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Learning Center</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">FAQs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase">Company</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-gray-300 hover:text-white">About</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase">Connect</h3>
+                    <div class="mt-4 flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="facebook" class="h-6 w-6"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="twitter" class="h-6 w-6"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="instagram" class="h-6 w-6"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="youtube" class="h-6 w-6"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a href="#" class="text-gray-400 hover:text-white">Privacy</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Terms</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Cookie Policy</a>
+                </div>
+                <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+                    &copy; 2023 CropWise. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Icon -->
+    <div class="chatbot-icon">
+        <button class="bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-700 transition duration-300">
+            <i data-feather="message-circle" class="h-6 w-6"></i>
+        </button>
+    </div>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        feather.replace();
+    </script>
+</body>
+</html>

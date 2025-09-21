@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Learning Center - CropWise{% endblock %}
+
+{% block content %}
+<div class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:text-center">
+            <h2 class="text-base text-green-600 font-semibold tracking-wide uppercase" data-aos="fade-down">Learning Center</h2>
+            <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl" data-aos="fade-down">
+                Knowledge at your fingertips
+            </p>
+        </div>
+
+        <div class="mt-10">
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <input type="text" id="cropSearch" class="form-control" placeholder="Search for a crop...">
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="cropList">
+                <div class="feature-card relative bg-gray-50 p-6 rounded-lg transition duration-300 crop-card">
+                    <img src="https://images.unsplash.com/photo-1542213483-9b53639966a2?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-lg mb-4" alt="Wheat">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900 card-title">Wheat</h3>
+                    <p class="mt-2 text-base text-gray-500">
+                        Wheat is a cereal grain, which is a worldwide staple food.
+                    </p>
+                    <a href="#" class="text-green-600 hover:text-green-700 font-semibold mt-4 inline-block">Read More</a>
+                </div>
+                <div class="feature-card relative bg-gray-50 p-6 rounded-lg transition duration-300 crop-card">
+                    <img src="https://images.unsplash.com/photo-1598163398593-1a40b27b524a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-lg mb-4" alt="Corn">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900 card-title">Corn</h3>
+                    <p class="mt-2 text-base text-gray-500">
+                        Corn is a tall annual cereal grass that yields large grains, or kernels, set in rows on a cob.
+                    </p>
+                    <a href="#" class="text-green-600 hover:text-green-700 font-semibold mt-4 inline-block">Read More</a>
+                </div>
+                <div class="feature-card relative bg-gray-50 p-6 rounded-lg transition duration-300 crop-card">
+                    <img src="https://images.unsplash.com/photo-1518638150340-f706e86a589b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-lg mb-4" alt="Rice">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900 card-title">Rice</h3>
+                    <p class="mt-2 text-base text-gray-500">
+                        Rice is the seed of the grass species Oryza sativa (Asian rice) or Oryza glaberrima (African rice).
+                    </p>
+                    <a href="#" class="text-green-600 hover:text-green-700 font-semibold mt-4 inline-block">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('cropSearch').addEventListener('keyup', function() {
+        let filter = this.value.toUpperCase();
+        let cards = document.getElementsByClassName('crop-card');
+        for (let i = 0; i < cards.length; i++) {
+            let title = cards[i].getElementsByClassName('card-title')[0];
+            if (title.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    });
+</script>
+{% endblock %}

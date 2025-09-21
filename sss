@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropWise - Smart Farming Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .chat-bubble {
+            border-radius: 20px 20px 20px 0;
+        }
+        .user-bubble {
+            border-radius: 20px 20px 0 20px;
+        }
+        .crop-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Predict Crop Section -->
+    <section id="predict" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Predict the Best Crop for Your Land</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Enter your soil and climate parameters to get AI-powered crop recommendations.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Enter Your Farm Details</h3>
+                        <form>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 mb-2">Nitrogen Level (ppm)</label>
+                                <input type="range" min="0" max="200" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 mb-2">Phosphorus Level (ppm)</label>
+                                <input type="range" min="0" max="200" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 mb-2">Potassium Level (ppm)</label>
+                                <input type="range" min="0" max="200" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 mb-2">Temperature (°C)</label>
+                                <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 mb-2">Humidity (%)</label>
+                                <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 mb-2">Rainfall (mm)</label>
+                                <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                            </div>
+                            <button type="submit" class="w-full py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition">Predict Best Crop</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="bg-green-50 p-8 rounded-xl shadow-sm h-full">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Recommended Crops</h3>
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="crop-card bg-white p-4 rounded-lg shadow-sm transition cursor-pointer">
+                                <img src="http://static.photos/food/320x240/101" alt="Wheat" class="w-full h-32 object-cover rounded-md mb-3">
+                                <h4 class="font-medium text-gray-800">Wheat</h4>
+                                <p class="text-sm text-gray-600">85% match</p>
+                            </div>
+                            <div class="crop-card bg-white p-4 rounded-lg shadow-sm transition cursor-pointer">
+                                <img src="http://static.photos/food/320x240/102" alt="Rice" class="w-full h-32 object-cover rounded-md mb-3">
+                                <h4 class="font-medium text-gray-800">Rice</h4>
+                                <p class="text-sm text-gray-600">78% match</p>
+                            </div>
+                            <div class="crop-card bg-white p-4 rounded-lg shadow-sm transition cursor-pointer">
+                                <img src="http://static.photos/food/320x240/103" alt="Corn" class="w-full h-32 object-cover rounded-md mb-3">
+                                <h4 class="font-medium text-gray-800">Corn</h4>
+                                <p class="text-sm text-gray-600">72% match</p>
+                            </div>
+                            <div class="crop-card bg-white p-4 rounded-lg shadow-sm transition cursor-pointer">
+                                <img src="http://static.photos/food/320x240/104" alt="Soybean" class="w-full h-32 object-cover rounded-md mb-3">
+                                <h4 class="font-medium text-gray-800">Soybean</h4>
+                                <p class="text-sm text-gray-600">65% match</p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <h4 class="font-medium text-gray-800 mb-2">Detailed Analysis</h4>
+                            <p class="text-sm text-gray-600 mb-3">Your soil's nitrogen levels are ideal for wheat cultivation. The predicted rainfall matches wheat's water requirements.</p>
+                            <div class="flex items-center text-sm text-green-600">
+                                <i data-feather="download" class="mr-2"></i>
+                                <span>Download full report</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Section -->
+    <section id="chatbot" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">CropWise Advisor</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Get instant answers to your farming questions from our AI-powered agricultural assistant.</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up">
+                <div class="bg-green-600 px-6 py-4 flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                        <i data-feather="message-square" class="text-green-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-white font-medium">CropWise Advisor</h3>
+                        <p class="text-green-100 text-sm">Online</p>
+                    </div>
+                </div>
+                
+                <div class="p-6 h-96 overflow-y-auto">
+                    <div class="flex mb-4">
+                        <div class="bg-green-100 p-3 chat-bubble max-w-xs">
+                            <p class="text-gray-800">Hello! I'm your CropWise Advisor. How can I help you with your farming questions today?</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end mb-4">
+                        <div class="bg-green-600 p-3 user-bubble max-w-xs">
+                            <p class="text-white">What's the best time to plant tomatoes in my region?</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex mb-4">
+                        <div class="bg-green-100 p-3 chat-bubble max-w-xs">
+                            <p class="text-gray-800">Tomatoes thrive when planted after the last frost date. Based on your location, the ideal planting window is between March 15 - April 10.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end mb-4">
+                        <div class="bg-green-600 p-3 user-bubble max-w-xs">
+                            <p class="text-white">How often should I water them?</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex mb-4">
+                        <div class="bg-green-100 p-3 chat-bubble max-w-xs">
+                            <p class="text-gray-800">Tomatoes need about 1-2 inches of water per week. Water deeply 2-3 times per week rather than a little every day. Early morning is the best time.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-t p-4 bg-gray-50">
+                    <div class="flex">
+                        <input type="text" placeholder="Type your farming question..." class="flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <button class="px-4 py-2 bg-green-600 text-white rounded-r-md hover:bg-green-700 transition">
+                            <i data-feather="send"></i>
+                        </button>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">CropWise Advisor may produce inaccurate information about farming practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        feather.replace();
+    </script>
+</body>
+</html>

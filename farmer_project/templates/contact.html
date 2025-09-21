@@ -1,0 +1,105 @@
+
+{% extends 'base.html' %}
+
+{% block title %}CropWise | Contact Us{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <div class="contact-bg text-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6" data-aos="fade-down">Get In Touch</h1>
+            <p class="text-xl md:text-2xl max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Have questions about our crop recommendation system? Our team is here to help farmers like you.
+            </p>
+        </div>
+    </div>
+
+    <!-- Contact Form Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div data-aos="fade-right">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Contact Information</h2>
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-green-100 p-3 rounded-full">
+                                    <i data-feather="mail" class="text-green-600 w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Email Us</h3>
+                                    <p class="text-gray-600">support@cropwise.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-green-100 p-3 rounded-full">
+                                    <i data-feather="phone" class="text-green-600 w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Call Us</h3>
+                                    <p class="text-gray-600">+1 (800) 123-4567</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-green-100 p-3 rounded-full">
+                                    <i data-feather="map-pin" class="text-green-600 w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Visit Us</h3>
+                                    <p class="text-gray-600">123 Farm Lane, Agriculture City, AC 12345</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-10">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Connect With Us</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-green-100 hover:bg-green-200 p-3 rounded-full transition">
+                                    <i data-feather="facebook" class="text-green-600 w-5 h-5"></i>
+                                </a>
+                                <a href="#" class="bg-green-100 hover:bg-green-200 p-3 rounded-full transition">
+                                    <i data-feather="twitter" class="text-green-600 w-5 h-5"></i>
+                                </a>
+                                <a href="#" class="bg-green-100 hover:bg-green-200 p-3 rounded-full transition">
+                                    <i data-feather="instagram" class="text-green-600 w-5 h-5"></i>
+                                </a>
+                                <a href="#" class="bg-green-100 hover:bg-green-200 p-3 rounded-full transition">
+                                    <i data-feather="linkedin" class="text-green-600 w-5 h-5"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-aos="fade-left" data-aos-delay="100">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Send Us a Message</h2>
+                        <form class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-2">Full Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 input-focus focus:outline-none" placeholder="John Farmer">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-2">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 input-focus focus:outline-none" placeholder="john@farm.com">
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-gray-700 mb-2">Subject</label>
+                                <select id="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 input-focus focus:outline-none">
+                                    <option value="">Select a subject</option>
+                                    <option value="support">Technical Support</option>
+                                    <option value="feature">Feature Request</option>
+                                    <option value="partnership">Partnership Inquiry</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-gray-700 mb-2">Your Message</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 input-focus focus:outline-none" placeholder="Tell us about your farming needs..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
