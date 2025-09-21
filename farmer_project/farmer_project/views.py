@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from farmer.models import Farmer
-from crop.models import Crop
+from crop.models import Crop, LearningContent
 from farmer.forms import CustomUserCreationForm, CustomAuthenticationForm
+# from crop.forms import LearningContentForm # This import is no longer needed
 
 def home(request):
     farmers = Farmer.objects.all()
@@ -20,7 +21,8 @@ def recommendation(request):
 
 @login_required(login_url='/login/')
 def crop_information(request):
-    return render(request, 'crop_information.html')
+    contents = LearningContent.objects.all()
+    return render(request, 'crop_information.html', {'contents': contents})
 
 @login_required(login_url='/login/')
 def chatbot(request):
