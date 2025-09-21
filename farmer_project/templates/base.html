@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <link rel="stylesheet" href="/home/ashura/Desktop/django/farmer_project/static/css/style.css">
 </head>
 <body class="font-sans bg-gray-50">
+    <i data-feather="check"></i> <!-- Test Feather Icon -->
     {% include 'navbar.html' %}
 
     <main>
@@ -31,7 +30,9 @@
             easing: 'ease-in-out',
             once: true
         });
-        feather.replace();
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace(); // Call feather.replace() here for the test icon
+        });
     </script>
 </body>
 </html>

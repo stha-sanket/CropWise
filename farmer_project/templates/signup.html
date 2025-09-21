@@ -37,7 +37,7 @@
                 </div>
                 
                 <!-- Right Column - Auth Card -->
-                <div class="auth-card rounded-xl shadow-2xl p-8" data-aos="fade-left">
+                <div class="auth-card rounded-xl shadow-2xl p-8 bg-white" data-aos="fade-left">
                     <h3 class="text-2xl font-bold text-gray-800 mb-1">Create Your Account</h3>
                     <p class="text-gray-600 mb-6">Sign up to get started with CropWise</p>
                     
@@ -45,25 +45,18 @@
                         {% csrf_token %}
                         {% for field in form %}
                             <div>
-                                <label for="{{ field.id_for_label }}" class="sr-only">{{ field.label }}</label>
-                                
+                                <label for="{{ field.id_for_label }}" class="text-sm text-gray-600">{{ field.label }}</label>
                                 <div class="relative">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         {% if field.name == 'username' %}
                                             <i data-feather="user" class="h-5 w-5 text-gray-400"></i>
                                         {% elif field.name == 'email' %}
                                             <i data-feather="mail" class="h-5 w-5 text-gray-400"></i>
-                                        {% elif field.name == 'password' or field.name == 'password2' %}
+                                        {% elif field.name == 'password1' or field.name == 'password2' %}
                                             <i data-feather="lock" class="h-5 w-5 text-gray-400"></i>
                                         {% endif %}
                                     </div>
-                                    {% if field.name == 'password' %}
-                                        <input type="password" name="{{ field.name }}" id="{{ field.id_for_label }}" class="input-focus pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-green-500 transition" placeholder="Enter your password">
-                                    {% elif field.name == 'password2' %}
-                                        <input type="password" name="{{ field.name }}" id="{{ field.id_for_label }}" class="input-focus pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-green-500 transition" placeholder="Confirm your password">
-                                    {% else %}
-                                        <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" id="{{ field.id_for_label }}" class="input-focus pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-green-500 transition" placeholder="{{ field.field.widget.attrs.placeholder }}">
-                                    {% endif %}
+                                    {{ field }}
                                 </div>
                                 {% if field.errors %}
                                     <p class="text-red-500 text-xs italic">{{ field.errors }}</p>
@@ -87,4 +80,7 @@
             </div>
         </div>
     </div>
+    <script>
+        feather.replace();
+    </script>
 {% endblock %}
