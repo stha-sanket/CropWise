@@ -53,6 +53,8 @@
                                             <i data-feather="user" class="h-5 w-5 text-gray-400"></i>
                                         {% elif field.name == 'email' %}
                                             <i data-feather="mail" class="h-5 w-5 text-gray-400"></i>
+                                        {% elif field.name == 'password' or field.name == 'password2' %}
+                                            <i data-feather="lock" class="h-5 w-5 text-gray-400"></i>
                                         {% endif %}
                                     </div>
                                     {% if field.name == 'password' %}
