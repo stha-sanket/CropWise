@@ -18,9 +18,10 @@ output_dir = 'ML_plots'
 os.makedirs(output_dir, exist_ok=True)
 
 # Load the dataset
+file_path = os.path.join(os.path.dirname(__file__), "Crop_recommendation.xls")
 try:
     # First, try to read as CSV
-    df = pd.read_csv("Crop_recommendation.xls")
+    df = pd.read_csv(file_path)
     print("Read as CSV successfully.")
 except Exception as e_csv:
     print(f"Could not read as CSV: {e_csv}. Trying to read as Excel (xls) with xlrd...")
@@ -28,13 +29,13 @@ except Exception as e_csv:
         # If CSV fails, try to read as Excel (xls) with xlrd
         # If you encounter an error like 'No module named 'xlrd'', you may need to install it:
         # pip install xlrd
-        df = pd.read_excel("Crop_recommendation.xls", engine='xlrd')
+        df = pd.read_excel(file_path, engine='xlrd')
         print("Read as Excel (xls) successfully.")
     except FileNotFoundError:
-        print("Error: 'Crop_recommendation.xls' not found. Make sure it's in the project root directory.")
+        print(f"Error: '{file_path}' not found. Please ensure the file exists.")
         exit()
     except Exception as e_excel:
-        print(f"Error reading 'Crop_recommendation.xls' as Excel: {e_excel}")
+        print(f"Error reading '{file_path}' as Excel: {e_excel}")
         print("Please ensure the file is a valid .xls or .csv file and xlrd is installed if it's an .xls file.")
         exit()
 
@@ -130,12 +131,12 @@ print(f"\nBest performing model: {best_model_name} with F1 Score: {best_f1_score
 
 # Save the best model
 best_model = results[best_model_name]['model']
-model_filename = 'best_crop_prediction_model.joblib'
+model_filename = os.path.join(os.path.dirname(__file__), 'best_crop_prediction_model.joblib')
 joblib.dump(best_model, model_filename)
 print(f"Best model saved as '{model_filename}'")
 
 # Save the scaler as well, as it's needed for new predictions
-scaler_filename = 'scaler.joblib'
+scaler_filename = os.path.join(os.path.dirname(__file__), 'scaler.joblib')
 joblib.dump(scaler, scaler_filename)
 print(f"Scaler saved as '{scaler_filename}'")
 
