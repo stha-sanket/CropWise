@@ -1,4 +1,4 @@
-# Farmer Project
+# CropWise
 
 ## Overview
 This is a Django-based web application designed to assist farmers with crop management, prediction, and learning resources. It aims to provide tools for better decision-making in agriculture.
