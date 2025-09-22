@@ -107,9 +107,3 @@ The application will be accessible at `http://127.0.0.1:8000/`.
 
 ### Random Forest Confusion Matrix
 ![Random Forest Confusion Matrix](ML/ML_plots/confusion_matrix_Random_Forest.png)
-
-## Contributing
-Contributions are welcome! Please fork the repository and submit pull requests.
-
-## License
-This project is licensed under the MIT License.
