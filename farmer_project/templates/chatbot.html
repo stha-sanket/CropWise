@@ -1,16 +1,19 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CropWise - Chatbot</title>
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <link rel="stylesheet" href="/home/ashura/Desktop/django/farmer_project/static/css/style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         .chat-container {
             height: calc(100vh - 150px); /* Adjust based on navbar/footer height */
@@ -54,6 +57,30 @@
             border-color: #4ade80;
             box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.2);
         }
+        /* Typing indicator styles */
+        .typing-indicator {
+            display: none;
+            margin-left: 1.5rem;
+            font-style: italic;
+            color: #6b7280; /* gray-500 */
+        }
+        .typing-indicator span {
+            animation: blink 1s infinite;
+        }
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes blink {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -63,17 +90,48 @@
         <div class="max-w-3xl mx-auto chat-container">
             <div class="chat-messages" id="chat-messages">
                 <!-- Initial bot message -->
+                {% if not conversation_history %}
                 <div class="flex justify-start">
                     <div class="message-bubble bot-message">
                         Hello! I'm your CropWise AI Assistant. How can I help you with your farming today?
                     </div>
                 </div>
+                {% endif %}
+
+                <!-- Conversation History -->
+                {% for message in conversation_history %}
+                    {% if message.role == 'user' %}
+                    <div class="flex justify-end">
+                        <div class="message-bubble user-message">
+                            {{ message.text }}
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="flex justify-start">
+                        <div class="message-bubble bot-message">
+                            {{ message.text|safe }}
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="flex justify-end mb-2">
+                <form method="post" action="{% url 'chatbot' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="clear_history" value="true">
+                    <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition duration-200">
+                        Clear History
+                    </button>
+                </form>
             </div>
             <div class="chat-input-area">
-                <input type="text" id="user-input" class="flex-grow px-4 py-2 rounded-full border border-gray-300 input-focus focus:outline-none" placeholder="Ask me anything about crops or farming...">
-                <button id="send-button" class="ml-4 p-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition duration-200">
-                    <i data-feather="send" class="w-5 h-5"></i>
-                </button>
+                <form id="chat-form" method="post" action="{% url 'chatbot' %}" class="flex-grow flex">
+                    {% csrf_token %}
+                    <input type="text" name="user_message" id="user-input" class="flex-grow px-4 py-2 rounded-full border border-gray-300 input-focus focus:outline-none" placeholder="Ask me anything about crops or farming..." required>
+                    <button type="submit" class="ml-4 p-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition duration-200">
+                        <i data-feather="send" class="w-5 h-5"></i>
+                    </button>
+                </form>
             </div>
         </div>
     </div>
@@ -87,38 +145,79 @@
         feather.replace();
 
         const chatMessages = document.getElementById('chat-messages');
+        const chatForm = document.getElementById('chat-form');
         const userInput = document.getElementById('user-input');
-        const sendButton = document.getElementById('send-button');
 
-        sendButton.addEventListener('click', sendMessage);
-        userInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
+        // Scroll to the bottom of the chat messages on load
+        chatMessages.scrollTop = chatMessages.scrollHeight;
 
-        function sendMessage() {
+        chatForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
+
             const messageText = userInput.value.trim();
             if (messageText === '') return;
 
-            // Add user message
+            // Add user message to chat display
             const userMessageDiv = document.createElement('div');
             userMessageDiv.className = 'flex justify-end';
             userMessageDiv.innerHTML = `<div class="message-bubble user-message">${messageText}</div>`;
             chatMessages.appendChild(userMessageDiv);
 
-            userInput.value = '';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            userInput.value = ''; // Clear input
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
 
-            // Simulate bot response (replace with actual API call later)
-            setTimeout(() => {
-                const botMessageDiv = document.createElement('div');
-                botMessageDiv.className = 'flex justify-start';
-                botMessageDiv.innerHTML = `<div class="message-bubble bot-message">I am an AI assistant and can provide general information. For specific advice, please consult an expert.</div>`;
-                chatMessages.appendChild(botMessageDiv);
+            // Create and show typing indicator
+            const typingIndicatorDiv = document.createElement('div');
+            typingIndicatorDiv.className = 'flex justify-start typing-indicator';
+            typingIndicatorDiv.innerHTML = `<div class="message-bubble bot-message"><span>.</span><span>.</span><span>.</span></div>`;
+            chatMessages.appendChild(typingIndicatorDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom again
+
+            // Send message via AJAX
+            try {
+                const response = await fetch(chatForm.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                    },
+                    body: new URLSearchParams({
+                        'user_message': messageText,
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    // Remove typing indicator
+                    chatMessages.removeChild(typingIndicatorDiv);
+
+                    // Add bot response to chat display
+                    const botMessageDiv = document.createElement('div');
+                    botMessageDiv.className = 'flex justify-start';
+                    // Use marked.parse for Markdown rendering
+                    botMessageDiv.innerHTML = `<div class="message-bubble bot-message">${marked.parse(data.chatbot_response)}</div>`;
+                    chatMessages.appendChild(botMessageDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+                } else {
+                    // Handle HTTP errors
+                    chatMessages.removeChild(typingIndicatorDiv);
+                    const errorText = await response.text();
+                    const errorMessageDiv = document.createElement('div');
+                    errorMessageDiv.className = 'flex justify-start';
+                    errorMessageDiv.innerHTML = `<div class="message-bubble bot-message" style="background-color: #f8d7da; color: #721c24;">Error: ${errorText}</div>`;
+                    chatMessages.appendChild(errorMessageDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            } catch (error) {
+                // Handle network errors
+                chatMessages.removeChild(typingIndicatorDiv);
+                const errorMessageDiv = document.createElement('div');
+                errorMessageDiv.className = 'flex justify-start';
+                errorMessageDiv.innerHTML = `<div class="message-bubble bot-message" style="background-color: #f8d7da; color: #721c24;">Network Error: ${error}</div>`;
+                chatMessages.appendChild(errorMessageDiv);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 1000);
-        }
+            }
+        });
     </script>
 </body>
 </html>

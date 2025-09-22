@@ -2,3 +2,9 @@ venv/
 *.pyc
 __pycache__/
 .DS_Store
+ML_plots/
+best_crop_prediction_model.joblib
+scaler.joblib
+db.sqlite3
+/media/
+.env
