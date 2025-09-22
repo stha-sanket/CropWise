@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}CropWise - Sign Up{% endblock %}
-
 {% block content %}
     <!-- Hero Section with Auth Options -->
-    <div class="relative min-h-screen flex items-center justify-center bg-agri-pattern">
+    <div class="relative min-h-screen flex items-center justify-center" style="background-image: url('{% static 'images/signup.jpg' %}'); background-size: cover; background-position: center;">
         <div class="absolute inset-0 bg-black bg-opacity-40"></div>
         
         <div class="relative z-10 w-full max-w-6xl px-4">
@@ -22,15 +20,15 @@
                         <div class="flex space-x-4">
                             <div class="bg-white bg-opacity-20 p-4 rounded-lg">
                                 <i data-feather="droplet" class="w-8 h-8 text-white mb-2"></i>
-                                <p class="text-white">Soil Analysis</p>
+                                <p class="text-white">Ai Chat</p>
                             </div>
                             <div class="bg-white bg-opacity-20 p-4 rounded-lg">
                                 <i data-feather="cloud" class="w-8 h-8 text-white mb-2"></i>
-                                <p class="text-white">Weather Insights</p>
+                                <p class="text-white">Crop Insights</p>
                             </div>
                             <div class="bg-white bg-opacity-20 p-4 rounded-lg">
                                 <i data-feather="bar-chart-2" class="w-8 h-8 text-white mb-2"></i>
-                                <p class="text-white">Yield Prediction</p>
+                                <p class="text-white">Crop Prediction</p>
                             </div>
                         </div>
                     </div>
@@ -49,7 +47,6 @@
                                 
                                 <div class="relative">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        {# This div is needed for pl-10 padding, even without icons #}
                                     </div>
                                     <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" id="{{ field.id_for_label }}" class="input-focus pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-green-500 transition">
                                 </div>

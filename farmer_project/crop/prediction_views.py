@@ -37,8 +37,6 @@ def get_crop_prediction_context(request, num_predictions=4):
                 if hasattr(model, 'predict_proba'):
                     probabilities = model.predict_proba(scaled_data)[0]
                     class_labels = model.classes_
-
-                    # Combine probabilities with class labels and sort
                     sorted_predictions = sorted(zip(class_labels, probabilities), key=lambda x: x[1], reverse=True)
 
                     for crop, prob in sorted_predictions[:num_predictions]:
