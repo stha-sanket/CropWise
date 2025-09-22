@@ -26,9 +26,6 @@ try:
 except Exception as e_csv:
     print(f"Could not read as CSV: {e_csv}. Trying to read as Excel (xls) with xlrd...")
     try:
-        # If CSV fails, try to read as Excel (xls) with xlrd
-        # If you encounter an error like 'No module named 'xlrd'', you may need to install it:
-        # pip install xlrd
         df = pd.read_excel(file_path, engine='xlrd')
         print("Read as Excel (xls) successfully.")
     except FileNotFoundError:
